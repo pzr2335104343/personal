@@ -1,0 +1,55 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "api": null,
+  "dns": {},
+  "routing": {},
+  "policy": {},
+  "inbounds": [
+    {
+      "protocol": "http",
+      "port": 1081
+    },
+    {
+      "port": 1080,
+      "protocol": "socks",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      },
+      "settings": {
+        "auth": "noauth"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "207.246.103.112",
+            "port": 11155,
+            "users": [
+              {
+                "id": "c895bde8-cc9d-43cb-b4e8-d0a9666c65bc",
+                "alterId": 0,
+                "security": "auto"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp"
+      }
+    }
+  ],
+  "transport": {},
+  "stats": {},
+  "reverse": {}
+}

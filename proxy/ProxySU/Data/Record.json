@@ -1,0 +1,75 @@
+[
+  {
+    "id": "638145666224897947",
+    "host": {
+      "tag": "pzr",
+      "address": "207.246.103.112",
+      "userName": "root",
+      "password": "9i*Q%uMjyEPz@J]R",
+      "port": 22,
+      "privateKeyPath": null,
+      "proxy": {
+        "address": "127.0.0.1",
+        "port": 1080,
+        "type": 0,
+        "userName": null,
+        "password": null
+      },
+      "secretType": 0,
+      "uploadPrivateKeyCommand": {
+        "shouldAlwaysRaiseCECOnUserInterfaceThread": true
+      }
+    },
+    "v2raySettings": {
+      "shadowSocksPassword": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
+      "shadowSocksMethod": "aes-128-gcm",
+      "shadowSocksPort": 4001,
+      "shadowSocksShareLink": "ss://YWVzLTEyOC1nY206NGJlYTNmYzktZmZlOC00YjZjLWJkYmYtYzVhMmE4NWI3NjUxQDo0MDAx#ShadowSocks",
+      "trojanPassword": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
+      "trojan_TCP_ShareLink": "trojan://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:443#trojan-tcp",
+      "vlesS_TCP_ShareLink": "vless://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:443?type=tcp&encryption=none&security=tls&path=%2f#vless-tcp-tls",
+      "vlesS_WS_Path": "/PLPWVN",
+      "vlesS_WS_ShareLink": "vless://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:443?type=ws&encryption=none&security=tls&path=%2fPLPWVN#vless-ws-tls",
+      "vlesS_KCP_Seed": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
+      "vlesS_KCP_Type": "none",
+      "vlesS_KCP_Port": 2001,
+      "vlesS_KCP_ShareLink": "vless://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:2001?type=kcp&encryption=none&security=none&path=%2f&seed=4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651&headerType=none#vless-mKCP",
+      "vlesS_QUIC_Security": "none",
+      "vlesS_QUIC_Type": "none",
+      "vlesS_QUIC_Port": 2002,
+      "vlesS_QUIC_Key": "",
+      "vlesS_QUIC_ShareLink": "vless://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:2002?type=quic&encryption=none&security=tls&path=%2f&quicSecurity=none&headerType=none#vless-quic",
+      "vlesS_gRPC_Port": 2003,
+      "vlesS_gRPC_ServiceName": "PONDUVH",
+      "vlesS_gRPC_ShareLink": "vless://4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651@:2003?type=grpc&encryption=none&security=tls&path=%2f&serviceName=PONDUVH&mode=gun#vless-gRPC",
+      "withTLS": true,
+      "port": 443,
+      "domain": null,
+      "uuid": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
+      "mulitUUID": [],
+      "maskDomain": null,
+      "types": [
+        101
+      ],
+      "vmesS_WS_Path": "/G19KXFVF",
+      "vmesS_WS_ShareLink": "vmess://eyJ2IjoiMiIsInBzIjoidm1lc3Mtd3MtdGxzIiwiYWRkIjpudWxsLCJwb3J0IjoiNDQzIiwiaWQiOiI0YmVhM2ZjOS1mZmU4LTRiNmMtYmRiZi1jNWEyYTg1Yjc2NTEiLCJhaWQiOiIwIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiL0cxOUtYRlZGIiwidGxzIjoidGxzIn0=",
+      "vmesS_TCP_Path": "/X2I7UN895",
+      "vmesS_TCP_ShareLink": "vmess://eyJ2IjoiMiIsInBzIjoidm1lc3MtdGNwLXRscyIsImFkZCI6bnVsbCwicG9ydCI6IjQ0MyIsImlkIjoiNGJlYTNmYzktZmZlOC00YjZjLWJkYmYtYzVhMmE4NWI3NjUxIiwiYWlkIjoiMCIsIm5ldCI6InRjcCIsInR5cGUiOiJodHRwIiwiaG9zdCI6IiIsInBhdGgiOiIvWDJJN1VOODk1IiwidGxzIjoidGxzIn0=",
+      "vmesS_KCP_Seed": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
+      "vmesS_KCP_Type": "none",
+      "vmesS_KCP_Port": 3001,
+      "vmesS_KCP_ShareLink": "vmess://eyJ2IjoiMiIsInBzIjoidm1lc3MtbUtDUCIsImFkZCI6bnVsbCwicG9ydCI6IjMwMDEiLCJpZCI6IjRiZWEzZmM5LWZmZTgtNGI2Yy1iZGJmLWM1YTJhODViNzY1MSIsImFpZCI6IjAiLCJuZXQiOiJrY3AiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiNGJlYTNmYzktZmZlOC00YjZjLWJkYmYtYzVhMmE4NWI3NjUxIiwidGxzIjoiIn0=",
+      "vmesS_QUIC_Security": "none",
+      "vmesS_QUIC_Type": "none",
+      "vmesS_QUIC_Port": 3002,
+      "vmesS_QUIC_Key": "",
+      "vmesS_QUIC_ShareLink": "vmess://eyJ2IjoiMiIsInBzIjoidm1lc3MtcXVpYyIsImFkZCI6bnVsbCwicG9ydCI6IjMwMDIiLCJpZCI6IjRiZWEzZmM5LWZmZTgtNGI2Yy1iZGJmLWM1YTJhODViNzY1MSIsImFpZCI6IjAiLCJuZXQiOiJxdWljIiwidHlwZSI6Im5vbmUiLCJob3N0Ijoibm9uZSIsInBhdGgiOiIiLCJ0bHMiOiJ0bHMifQ=="
+    },
+    "settings": null,
+    "trojanGoSettings": null,
+    "naiveProxySettings": null,
+    "brook": null,
+    "mtProtoGoSettings": null,
+    "initializeTask": null
+  }
+]
