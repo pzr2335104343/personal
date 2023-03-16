@@ -5,7 +5,7 @@
       "tag": "pzr",
       "address": "207.246.103.112",
       "userName": "root",
-      "password": "9i*Q%uMjyEPz@J]R",
+      "password": "]2Xx2U9*+_6y$zQE",
       "port": 22,
       "privateKeyPath": null,
       "proxy": {
@@ -48,9 +48,7 @@
       "uuid": "4bea3fc9-ffe8-4b6c-bdbf-c5a2a85b7651",
       "mulitUUID": [],
       "maskDomain": null,
-      "types": [
-        101
-      ],
+      "types": [],
       "vmesS_WS_Path": "/G19KXFVF",
       "vmesS_WS_ShareLink": "vmess://eyJ2IjoiMiIsInBzIjoidm1lc3Mtd3MtdGxzIiwiYWRkIjpudWxsLCJwb3J0IjoiNDQzIiwiaWQiOiI0YmVhM2ZjOS1mZmU4LTRiNmMtYmRiZi1jNWEyYTg1Yjc2NTEiLCJhaWQiOiIwIiwibmV0Ijoid3MiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiL0cxOUtYRlZGIiwidGxzIjoidGxzIn0=",
       "vmesS_TCP_Path": "/X2I7UN895",
