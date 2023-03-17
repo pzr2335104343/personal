@@ -1,2 +1,0 @@
-正在与服务器建立连接
-连接失败，Permission denied (password).
