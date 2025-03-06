@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>今天是属于张明珠的！</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            font-family: 'Microsoft Yahei', cursive;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .container {
+            max-width: 90vw;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 5rem;
+            animation: pulse 1.5s infinite;
+            margin-top: 50px;
+        }
+        
+        h3 {
+            font-size: 3rem;
+        }
+        p {
+            font-size: 2.5rem;
+        }
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background: #ff4081;
+            border-radius: 50%;
+            bottom: -100px;
+            animation: floatMobile 4s ease-in infinite;
+        }
+
+        .trail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 64, 129, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .game-box {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px auto;
+            width: 70vw;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #answerInput {
+            font-size: 2.5rem;
+            padding: 30px;
+            margin: 30px;
+            width: 30vw;
+            border: 3px solid #ff4081;
+            border-radius: 55px;
+        }
+
+        #answerInput::placeholder {
+            font-size: 2rem;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-500px) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes trail {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.1) translateY(-20px); }
+        }
+
+        /* 通用按钮样式 */
+        button {
+            position: relative;
+            border: none;
+            padding: 30px 45px;
+            border-radius: 5vw;
+            cursor: pointer;
+            margin: 20px;
+            font-size: 3rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 气球按钮专属样式 */
+        #balloonBtn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            border: 6px solid rgba(255,255,255,0.3);
+        }
+
+        #balloonBtn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 60px rgba(255,107,107,0.4);
+            background: linear-gradient(45deg, #ff5252, #ff7a7a);
+        }
+
+        #balloonBtn:active {
+            transform: translateY(3px);
+        }
+
+        #balloonBtn::after {
+            content: "🎈";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #balloonBtn:hover::after {
+            right: 15px;
+            opacity: 1;
+        }
+
+        /* 解锁按钮专属样式 */
+        #unlockBtn {
+            background: linear-gradient(45deg, #4b6cb7, #182848);
+            color: white;
+            border: 6px solid rgba(255,255,255,0.3);
+            letter-spacing: 3px;
+            height: 10vh;;
+            display: block;
+            margin: 0 auto;
+            transform: scale(0.7);
+        }
+
+        #unlockBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(75,108,183,0.5);
+            background: linear-gradient(45deg, #3a539b, #1a237e);
+        }
+
+        #unlockBtn:active {
+            animation: spark 0.4s;
+        }
+
+        @keyframes spark {
+            0% { box-shadow: 0 0 10px #fff; }
+            50% { box-shadow: 0 0 20px #fff; }
+            100% { box-shadow: 0 0 10px #fff; }
+        }
+
+        /* 添加按钮按压动画 */
+        @keyframes buttonPress {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes floatMobile {
+            to {
+                transform: translateY(-100vh) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        /* 按钮点击态优化 */
+        button:active {
+            filter: brightness(0.9);
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎂 生日快乐，张明珠！ </h1>
+
+    <button id="balloonBtn" onclick="launchBalloons()">召唤生日气球</button>
+
+    <div class="game-box">
+        <h3> 生日密码挑战 </h3>
+        <p>~~~~~~~~~~~~~~~~~~~~</p>
+        <p>你的出生月份的3次方，<br>乘以10加上10，<br>再加上你的出生日的平方，<br>等于多少？</p>
+        <input type="number" id="answerInput" inputmode="numeric" placeholder="输入3位数字">
+        <!-- <br> -->
+        <button id="unlockBtn" onclick="checkAnswer()">确定确定</button>
+    </div>
+
+    <div class="game-box">
+        <p>✨今天是个你要开心的日子✨</p>
+        <p> 喜欢你开心，要开心哦 </p>
+    </div>
+</div>
+
+<script>
+    function runLaunchBalloons(){
+        const runTimer = setInterval(() => runLaunchBalloons(), 300);
+        setTimeout(() => clearInterval(runTimer), 10000);
+    }   
+    // 气球动画
+    function launchBalloons() {
+        const colors = ['#ff4081', '#00bcd4', '#ffeb3b', '#4caf50', '#e91e63'];
+        for(let i = 0; i < 20; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 90 + '%';
+            balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.animationDuration = Math.random() * 3 + 3 + 's';
+            balloon.style.zIndex=999;
+            document.body.appendChild(balloon);
+            // setTimeout(() => balloon.remove(), 10000);
+        }
+    }
+
+    // 鼠标拖尾特效
+    document.addEventListener('mousemove', (e) => {
+        for(let i = 0; i < 3; i++) {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            trail.style.animation = `trail ${Math.random()*0.5+0.3}s linear`;
+            document.body.appendChild(trail);
+
+            setTimeout(() => trail.remove(), 500);
+        }
+    });
+
+    // 数字谜题游戏
+    function checkAnswer() {
+        const input = document.getElementById('answerInput');
+        if(input.value === '305') {
+            alert('🎉 哈哈哈哈，你的智力真是超一绝，真厉害，这根本难不倒你');
+            document.body.style.background = 'linear-gradient(45deg, #84fab0, #8fd3f4)';
+            alert('🎉 生日快乐哦~ ');
+        } else {
+            alert(' 不对不对，还差一点');
+            input.value = '';
+            input.focus();
+        }
+    }
+</script>
+</body>
+</html>

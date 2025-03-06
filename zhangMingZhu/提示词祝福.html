@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>收集彩虹屁</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Microsoft Yahei', sans-serif;
+        }
+
+        #collectionArea {
+            width: 80%;
+            min-height: 100px;
+            border: 3px dashed #4a90e2;
+            border-radius: 15px;
+            margin: 20px;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .word {
+            padding: 8px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: absolute;
+            user-select: none;
+        }
+
+        .uncollected {
+            background: #ff7e5f;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .collected {
+            background: #4a90e2;
+            transform: scale(1.1);
+            position: static !important;
+            animation: pop 0.3s ease-out;
+        }
+
+        #completeMessage {
+            display: none;
+            font-size: 24px;
+            color: #4a90e2;
+            text-align: center;
+            margin-top: 30px;
+            animation: rainbow 2s infinite;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            25% { color: #4a90e2; }
+            50% { color: #00ff00; }
+            75% { color: #ff00ff; }
+            100% { color: #ff0000; }
+        }
+
+        #resetBtn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="collectionArea"></div>
+    <div id="completeMessage"></div>
+    <button id="resetBtn">再夸一次</button>
+
+    <script>
+        const praiseWords = ['玉树临风', '才高八斗', '貌比潘安', '智勇双全', 
+                           '风度翩翩', '学富五车', '气宇轩昂', '举世无双'];
+
+        function createWordElement(word) {
+            const element = document.createElement('div');
+            element.className = 'word uncollected';
+            element.textContent = word;
+            
+            // 随机位置和旋转
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            const rotate = Math.random() * 30 - 15;
+            
+            element.style.left = `${x}px`;
+            element.style.top = `${y}px`;
+            element.style.transform = `rotate(${rotate}deg)`;
+            
+            // 随机颜色
+            const hue = Math.random() * 360;
+            element.style.backgroundColor = `hsl(${hue}, 70%, 60%)`;
+            
+            return element;
+        }
+
+        function initializeGame() {
+            const container = document.body;
+            praiseWords.forEach(word => {
+                container.appendChild(createWordElement(word));
+            });
+
+            document.querySelectorAll('.word').forEach(word => {
+                word.addEventListener('click', function() {
+                    if (!this.classList.contains('collected')) {
+                        this.classList.add('collected');
+                        document.getElementById('collectionArea').appendChild(this);
+                        checkCompletion();
+                    }
+                });
+            });
+        }
+
+        function checkCompletion() {
+            const collected = document.querySelectorAll('.collected').length;
+            if (collected === praiseWords.length) {
+                document.getElementById('completeMessage').style.display = 'block';
+                document.getElementById('completeMessage').textContent = 
+                    "您真是" + praiseWords.join('、') +"的超级完美存在！";
+                document.getElementById('resetBtn').style.display = 'block';
+            }
+        }
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            location.reload();
+        });
+
+        // 初始化游戏
+        initializeGame();
+    </script>
+</body>
+</html>

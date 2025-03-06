@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界先疯</title>
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  <style>
+    body {
+      background-color: #f1d5da;
+    }
+
+    img {
+      width: 200px;
+    }
+
+    .content-box {
+      /* position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      max-width: none; */
+      /* border: 1px solid black; */
+      text-align: center;
+    }
+
+    h2 {
+      font-size:5rem;
+      color: #68495b;
+    }
+
+    #start,
+    #yes,
+    #no {
+      background-color: #d4818e;
+      color: white;
+      border: none;
+      font-size: 25px;
+      border-radius: 15px;
+      height: 50px;
+      width: 90px;
+    }
+
+    #yes {
+      transform: translate(-50%, 0%);
+      width: 150px;
+    }
+
+    #no {
+      position: absolute;
+      transform: translate(-30%, 0%);
+      width: 150px;
+      background-color: #6784b1;
+    }
+
+    #skill-tree {
+      height: 200px;
+      padding: 10px;
+      font-size: 20px;
+      border-radius: 20px;
+      text-align: left;
+      padding-left: 10%;
+      margin-bottom: 20px;
+      color: #6784b1;
+    }
+
+    /* 产生光标闪烁的效果 */
+    #skill-tree::after {
+      content: '|';
+      color: darkgray;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    #collectionArea {
+      width: 80%;
+      min-height: 100px;
+      border: 3px dashed #4a90e2;
+      border-radius: 15px;
+      margin: 20px;
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    .word {
+      padding: 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: absolute;
+      user-select: none;
+    }
+
+    .uncollected {
+      background: #ff7e5f;
+      color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .collected {
+      background: #4a90e2;
+      transform: scale(1.1);
+      position: static !important;
+      animation: pop 0.3s ease-out;
+    }
+
+    #completeMessage {
+      display: none;
+      font-size: 24px;
+      color: #4a90e2;
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      animation: rainbow 2s infinite;
+    }
+    #user-img{
+      display: none;
+      animation: user-img 0.9s infinite;
+      margin-bottom: 50px;
+    }
+
+    @keyframes user-img {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.7);
+      }
+      100% {
+        transform: scale(1.5);
+      }
+    }
+    @keyframes pop {
+      0% {
+        transform: scale(0);
+      }
+
+      80% {
+        transform: scale(1.2);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes rainbow {
+      0% {
+        color: #ff0000;
+      }
+
+      25% {
+        color: #4a90e2;
+      }
+
+      50% {
+        color: #00ff00;
+      }
+
+      75% {
+        color: #ff00ff;
+      }
+
+      100% {
+        color: #ff0000;
+      }
+    }
+
+    #resetBtn {
+      margin: 0 auto;
+      padding: 10px 25px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content-box">
+    <div class="home item">
+      <h2>世界先疯观察日记：人类高质量灵魂样本</h2>
+      <button id="start">鉴赏</button>
+    </div>
+    <div class="content1 item" hidden>
+      <img id="skill-img" src="img/1.png" alt="找到彩蛋了吗————~~">
+      <h2>点我观察世界先疯的天赋技能树(うえうえう↑)</h2>
+      <div id="skill-tree">
+      </div>
+      <button id="yes">我很认可</button><button id="no">不认可</button>
+    </div>
+    <div class="content2 item" hidden>
+      <img id="user-img" src="img/favicon.jpg" alt="lalalalalalala">
+      <div id="collectionArea"></div>
+      <div id="completeMessage"></div>
+      <button id="resetBtn">再夸一次</button>
+    </div>
+  </div>
+</body>
+<script>
+  $('#start').click(() => {
+    $('.item').hide();
+    $('.content1').show();
+    $('#yes,#no').hide();
+  })
+  $('#skill-img').click(() => {
+    // 获取容器
+    const container = document.getElementById('skill-tree')
+    // 把需要展示的全部文字进行切割
+    const data = `被动技能：说话很温柔。
+                    隐藏属性：超级不敷衍，态度可好。
+                    专属天赋：让接触人的变得开心。
+                    成就解锁：连续好几天蝉联「多吃饭的好朋友」称号。`
+      .split('')
+    // 需要追加到容器中的文字下标
+    let index = 0
+    function writing() {
+      if (index < data.length) {
+        // 换行
+        if (data[index - 1] === '。') container.innerHTML += '<br><br>';
+        // 追加文字
+        container.innerHTML += data[index++]
+        let timer = setTimeout(writing, 10)
+      }
+    }
+    writing()
+    setTimeout(function () {
+      $('#yes,#no').show();
+    }, 1500)
+    $('#skill-img').unbind('click')
+  })
+
+  $('#no').click(() => {
+    changePosition()
+  })
+  $('#yes').click(() => {
+    $('.item').hide();
+    $('.content2').show();
+    // 初始化游戏
+    initializeGame();
+  })
+
+  const changePosition = changePos();
+  function changePos() {
+    let index = 0;
+    const msgArr = ['真的吗？', '我不信', '别点了', '去点那个', '啊啊啊']
+    const btnDom = document.getElementById('no')
+
+    return function () {
+      if (index === msgArr.length) {
+        alert('不认可也得认可！');
+        $('#yes').trigger('click');
+      }
+      const left = Math.random() * 500
+      const top = Math.random() * 500
+      btnDom.style.left = `${left}px`
+      btnDom.style.top = `${top}px`
+      btnDom.innerHTML = msgArr[index++];
+    }
+  }
+
+
+  const praiseWords = ['人美心甜', '成绩超好', '财运无敌', '桃花精致',
+    '学啥啥会', '逢考必过', '五连绝世', '瑶大王', '何でも一番にできるの'];
+
+  function createWordElement(word) {
+    const element = document.createElement('div');
+    element.className = 'word uncollected';
+    element.textContent = word;
+
+    // 随机位置和旋转
+    const x = Math.random() * (window.innerWidth - 150);
+    const y = Math.random() * (window.innerHeight - 100);
+    const rotate = Math.random() * 30 - 15;
+
+    element.style.left = `${x}px`;
+    element.style.top = `${y}px`;
+    element.style.transform = `rotate(${rotate}deg)`;
+
+    // 随机颜色
+    const hue = Math.random() * 360;
+    element.style.backgroundColor = `hsl(${hue}, 70%, 60%)`;
+
+    return element;
+  }
+
+  function initializeGame() {
+    const container = document.body;
+    praiseWords.forEach(word => {
+      container.appendChild(createWordElement(word));
+    });
+
+    document.querySelectorAll('.word').forEach(word => {
+      word.addEventListener('click', function () {
+        if (!this.classList.contains('collected')) {
+          this.classList.add('collected');
+          document.getElementById('collectionArea').appendChild(this);
+          checkCompletion();
+        }
+      });
+    });
+  }
+
+  function checkCompletion() {
+    const collected = document.querySelectorAll('.collected').length;
+    if (collected === praiseWords.length) {
+      document.getElementById('completeMessage').style.display = 'block';
+      document.getElementById('completeMessage').textContent =
+        "没错，这就是" + praiseWords.join('、') + "的超级完美张明珠！";
+      document.getElementById('resetBtn').style.display = 'block';
+      $('#user-img').show();
+    }
+  }
+
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    location.reload();
+  });
+
+
+</script>
+
+</html>
